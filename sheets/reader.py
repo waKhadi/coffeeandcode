@@ -1,5 +1,9 @@
+import re
 from googleapiclient.discovery import build
 from config.settings import SHEET_ID
+
+def is_valid_email(email):
+    return re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email) is not None
 
 def get_emails(creds):
     service = build('sheets', 'v4', credentials=creds)
@@ -24,6 +28,13 @@ def get_emails(creds):
         print("No email column found")
         return []
 
-    emails = [row[email_col] for row in values[1:] if len(row) > email_col]
+    emails = []
+    for row in values[1:]:
+        if len(row) > email_col:
+            email = row[email_col].strip()
+            if is_valid_email(email):
+                emails.append(email)
+            else:
+                print(f"Skipping invalid email: {email}")
 
     return emails

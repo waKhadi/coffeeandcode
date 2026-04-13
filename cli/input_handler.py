@@ -1,16 +1,17 @@
 def get_workshop_details():
     print("\n--- Coffee & Code Workshop Details ---\n")
 
-    name = input("Workshop Name: ")
-    date = input("Date (e.g. 20 April 2026): ")
-    time = input("Time (e.g. 10:00 AM): ")
-    summary = input("Summary: ")
-    description = input("Description: ")
+    def prompt(field):
+        while True:
+            value = input(f"{field}: ").strip()
+            if value:
+                return value
+            print(f"{field} cannot be empty. Try again.")
 
     return {
-        "name": name,
-        "date": date,
-        "time": time,
-        "summary": summary,
-        "description": description
+        "name": prompt("Workshop Name"),
+        "date": prompt("Date (e.g. 20 April 2026)"),
+        "time": prompt("Time (e.g. 10:00 AM)"),
+        "summary": prompt("Summary"),
+        "description": prompt("Description")
     }

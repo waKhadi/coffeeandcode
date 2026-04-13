@@ -22,7 +22,6 @@ def send_emails(creds, emails, details, html):
         message['Subject'] = f"Coffee & Code Workshop: {details['name']}"
         message['From'] = details['sender_email']
         message['To'] = recipient
-
         message.attach(MIMEText(html, 'html'))
 
         raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
@@ -30,5 +29,3 @@ def send_emails(creds, emails, details, html):
             userId='me',
             body={'raw': raw}
         ).execute()
-
-        print(f"Sent to {recipient}")

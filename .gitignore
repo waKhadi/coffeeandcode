@@ -3,6 +3,12 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Very important data
+venv/
+.env
+config/credentials.json
+config/token.json
+
 # C extensions
 *.so
 

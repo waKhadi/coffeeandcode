@@ -8,6 +8,7 @@ venv/
 .env
 config/credentials.json
 config/token.json
+preview.html
 
 # C extensions
 *.so
